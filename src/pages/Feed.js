@@ -1,0 +1,34 @@
+import { useEffect, useState } from "react";
+import Feedback from "react-bootstrap/esm/Feedback";
+
+export default function Feed(props) {
+	const [loggedIn, setLoggedIn] = useState(false);
+	useEffect(() => {
+		if (typeof props.login === "undefined") {
+			setLoggedIn(false);
+		} else {
+			setLoggedIn(true);
+		}
+	}, []);
+
+	const handleClick = () => {
+		setLoggedIn(!loggedIn);
+	};
+
+	useEffect(() => {
+		console.log(loggedIn);
+	}, [loggedIn]);
+
+	return (
+		<div>
+			This is the feed page. You are currentry{" "}
+			{loggedIn ? "logged in" : "logged out"}.
+			<br />
+			{loggedIn ? (
+				<button onClick={handleClick}>{"Log out"}</button>
+			) : (
+				<button onClick={handleClick}>{"Log in"}</button>
+			)}
+		</div>
+	);
+}

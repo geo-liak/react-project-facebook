@@ -1,0 +1,83 @@
+/* styles */
+
+a {
+  color: #3b5998;
+}
+
+.navbar {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.navbar-default {
+  background-color: #3b5998;
+  border-color: #3b5998;
+}
+
+.navbar-default .navbar-brand {
+  color: #fff;
+}
+
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+  color: #fff;
+}
+
+.btn-width-100 {
+  width: 100%;
+}
+
+.btn-register {
+  width: 40% !important;
+  background-color: #42b72a !important;
+  outline: none !important;
+  border-style: none !important;
+  color: #fff;
+}
+
+.center-xy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-border {
+  border: 1px black solid;
+  border-radius: 10px;
+}
+
+
+
+.text-line {
+  width: 98%;
+  text-align: center;
+  border-bottom: 1px solid rgb(218, 218, 218);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.text-line span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+.login-form-width {
+  width: 450px;
+}
+
+.registration-successful {
+  color:rgb(45, 175, 6);
+  font-weight: 600;
+}
+
