@@ -33,7 +33,7 @@ export default function Login(props) {
 		const inputPassword = document.getElementById("password").value;
 		let userToLogin = null;
 
-		userToLogin =  users.filter((user) => {
+		users.filter((user) => {
 			if (user.username === inputUsername && user.password === inputPassword) {
 				userToLogin = user;
 			}
