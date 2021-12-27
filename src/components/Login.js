@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useLocation, useNavigate, useRoutes } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../css/App.css";
+import { url } from "../settings";
 
 export default function Login(props) {
 	const location = useLocation();
@@ -10,7 +11,7 @@ export default function Login(props) {
 	const [users, setUsers] = useState([]);
 
 	const newRegistration =
-		(location.state && location.state.newRegistration) != undefined
+		(location.state && location.state.newRegistration) !== null
 			? location.state.newRegistration
 			: "";
 
@@ -21,9 +22,8 @@ export default function Login(props) {
 	const handleLogin = (e) => {
 		e.preventDefault();
 		console.log("in login");
-		let users = [];
 
-		axios.get("http://localhost:3004/users/").then((res) => {
+		axios.get(url + "/users/").then((res) => {
 			setUsers(res.data);
 		});
 	};
@@ -31,20 +31,19 @@ export default function Login(props) {
 	useEffect(() => {
 		const inputUsername = document.getElementById("username").value;
 		const inputPassword = document.getElementById("password").value;
-		let user = null;
+		let userToLogin = null;
 
-		users.filter((u) => {
-			if (u.username === inputUsername && u.password === inputPassword) {
-				user = u;
+		userToLogin =  users.filter((user) => {
+			if (user.username === inputUsername && user.password === inputPassword) {
+				userToLogin = user;
 			}
 		});
 
-		if (user !== null) {
-			console.log(user);
+		if (userToLogin !== null) {
+			console.log(userToLogin);
 		} else {
-			console.log('no user found');
+			console.log("no user found");
 		}
-
 	}, [users]);
 
 	return (
