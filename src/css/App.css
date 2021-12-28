@@ -76,8 +76,13 @@ a {
   width: 450px;
 }
 
-.registration-successful {
+.registration-successful, .msgSuccess {
   color:rgb(45, 175, 6);
+  font-weight: 600;
+}
+
+.msgFail {
+  color:rgb(255, 0, 0);
   font-weight: 600;
 }
 

@@ -4,16 +4,40 @@ import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/App.css";
 import { url } from "../settings";
+import Message from "./Message";
 
 export default function Login(props) {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [users, setUsers] = useState([]);
+	const [failedLogin, setFailedLogin] = useState(false);
+	const [newRegistration, setNewRegistration] = useState(false);
+	const [informationMessage, setInformationMessage] = useState("");
 
-	const newRegistration =
+	useEffect(() => {
 		(location.state && location.state.newRegistration) !== null
-			? location.state.newRegistration
-			: "";
+			? setNewRegistration(true)
+			: setNewRegistration(false);
+	}, []);
+
+	useEffect(() => {
+		if (newRegistration) {
+			setInformationMessage(
+				<Message status='success' message='You have successfully registered' />
+			);
+		}
+	}, [newRegistration]);
+
+	useEffect(() => {
+		if (failedLogin) {
+			setInformationMessage(
+				<Message
+					status='failed'
+					message='The username or password are incorrect'
+				/>
+			);
+		} 
+	}, [failedLogin]);
 
 	const handleRegisterClick = () => {
 		navigate("/register");
@@ -36,14 +60,14 @@ export default function Login(props) {
 		users.filter((user) => {
 			if (user.username === inputUsername && user.password === inputPassword) {
 				userToLogin = user;
+				navigate('/feed');
 			}
 		});
 
-		if (userToLogin !== null) {
-			console.log(userToLogin);
-		} else {
-			console.log("no user found");
+		if (userToLogin === null && users.length > 0) {
+			setFailedLogin(true);
 		}
+
 	}, [users]);
 
 	return (
@@ -52,13 +76,7 @@ export default function Login(props) {
 			<form
 				className='login-form-width border shadow center-xy p-3'
 				onSubmit={(e) => handleLogin(e)}>
-				{newRegistration ? (
-					<h6 className='registration-successful text-center'>
-						You have successfully registered
-					</h6>
-				) : (
-					""
-				)}
+				{informationMessage}
 				<h4 className='text-center'>Login to start enjoying unlimited fun!</h4>
 				<div className='form-group'>
 					<input
