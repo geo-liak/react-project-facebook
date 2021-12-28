@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/App.css";
-import { url } from "../settings";
+import { url } from "../settings/settings";
 import Message from "./Message";
 
 export default function Login(props) {

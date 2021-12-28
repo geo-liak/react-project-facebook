@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Feed from "./pages/Feed"
+import Login from "../components/Login";
+import Register from "../components/Register";
+import Feed from "../pages/Feed"
 
 export const routes = (
     <Routes>

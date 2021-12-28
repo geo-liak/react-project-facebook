@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Feedback from "react-bootstrap/esm/Feedback";
+import Post from "../components/Post";
 
 export default function Feed(props) {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ export default function Feed(props) {
 			) : (
 				<button onClick={handleClick}>{"Log in"}</button>
 			)}
+			<Post />
 		</div>
 	);
 }
