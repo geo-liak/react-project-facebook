@@ -132,9 +132,9 @@ export default function Post() {
 
               <div className="container ">
                 <div className="row ">
-                  <div className="col-sm-2 pt-3">Likes {likes}</div>
-                  <div className="col-sm-8"></div>
-                  <div className="col-sm-2 pt-3">Shares {props.shares}</div>
+                  <div className="col-3 pt-3 px-0 text-start">Likes {likes}</div>
+                  <div className="col-6"></div>
+                  <div className="col-3 pt-3 px-0 text-end">Shares {props.shares}</div>
                 </div>
               </div>
               <hr className="" />
