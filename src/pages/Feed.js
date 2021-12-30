@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 
 export default function Feed(props) {
@@ -20,16 +22,35 @@ export default function Feed(props) {
 	}, [loggedIn]);
 
 	return (
-		<div>
-			This is the feed page. You are currentry{" "}
-			{loggedIn ? "logged in" : "logged out"}.
-			<br />
-			{loggedIn ? (
-				<button onClick={handleClick}>{"Log out"}</button>
-			) : (
-				<button onClick={handleClick}>{"Log in"}</button>
-			)}
-			<Post />
-		</div>
-	);
+		<>
+			<Navbar />
+
+			<div className="container" >
+				<div className="row">
+					<div className="col-md-3 border">ΑΡΙΣΤΕΡΑ</div>
+					<div className="col-md-6 border">
+						
+						<Header />
+						<Post />
+					</div>
+					<div className="col-md-3 border text-end"> ΔΕΞΙΑ</div>
+
+				</div>
+			</div>
+		</>
+
+	)
+	// (
+	// 	<div>
+	// 		This is the feed page. You are currentry{" "}
+	// 		{loggedIn ? "logged in" : "logged out"}.
+	// 		<br />
+	// 		{loggedIn ? (
+	// 			<button onClick={handleClick}>{"Log out"}</button>
+	// 		) : (
+	// 			<button onClick={handleClick}>{"Log in"}</button>
+	// 		)}
+	// 		<Post />
+	// 	</div>
+	// );
 }

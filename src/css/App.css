@@ -33,6 +33,12 @@ a {
   color: #fff;
 }
 
+
+.navbar-item {
+  color: #fff !important;
+  text-decoration: none;
+}
+
 .btn-width-100 {
   width: 100%;
 }
@@ -77,20 +83,20 @@ a {
 }
 
 .registration-successful, .msgSuccess {
-  color:rgb(45, 175, 6);
+  color: rgb(45, 175, 6);
   font-weight: 600;
 }
 
 .msgFail {
-  color:rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
   font-weight: 600;
 }
 
 .like-pressed {
-  color:rgb(5, 61, 216) !important;
+  color: rgb(5, 61, 216) !important;
   /* background-color: tomato !important; */
 }
 
 .inline {
-  display:inline;
+  display: inline;
 }
