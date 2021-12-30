@@ -17,7 +17,7 @@ export default function Feed(props) {
 	};
 
 	useEffect(() => {
-		console.log(loggedIn);
+		console.log('logged in ' + loggedIn);
 	}, [loggedIn]);
 
 	return (

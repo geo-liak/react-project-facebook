@@ -36,7 +36,7 @@ export default function Login(props) {
 					message='The username or password are incorrect'
 				/>
 			);
-		} 
+		}
 	}, [failedLogin]);
 
 	const handleRegisterClick = () => {

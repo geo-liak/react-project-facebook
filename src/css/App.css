@@ -86,3 +86,11 @@ a {
   font-weight: 600;
 }
 
+.like-pressed {
+  color:rgb(5, 61, 216) !important;
+  /* background-color: tomato !important; */
+}
+
+.inline {
+  display:inline;
+}
