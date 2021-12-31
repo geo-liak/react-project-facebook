@@ -1,7 +1,13 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import CreatePost from "../components/CreatePost";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
+import ProfileBrief from "../components/ProfileBrief";
+import ProfileEdit from "../components/ProfileEdit";
+import ProfileSections from "../components/ProfileSections";
+import { url } from '../settings/settings'
 
 export default function Feed(props) {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -18,8 +24,19 @@ export default function Feed(props) {
 	};
 
 	useEffect(() => {
-		console.log('logged in ' + loggedIn);
+		// console.log('logged in ' + loggedIn);
 	}, [loggedIn]);
+
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		axios.get(url + "/posts/").then((res) => {
+			setPosts(res.data);
+		})
+	}, [])
+
+	
+
 
 	return (
 		<>
@@ -27,16 +44,32 @@ export default function Feed(props) {
 
 			<div className="container" >
 				<div className="row">
-					<div className="col-md-3 border">ΑΡΙΣΤΕΡΑ</div>
-					<div className="col-md-6 border">
-						
-						<Header />
-						<Post />
+					<div className="col-md-3 py-3">
+						<ProfileBrief />
+						<ProfileSections />
 					</div>
-					<div className="col-md-3 border text-end"> ΔΕΞΙΑ</div>
 
+
+						<div className="col-md-9 px-0 ">
+							<div className="component-bg">
+								<Header />
+							</div>
+
+
+						<div className="row">
+							<div className="col-md-8 ">
+								<CreatePost />
+								{posts.map((post) => {
+									return ( <div><Post key={post.id} {...post} /></div>)
+								})}
+
+							</div>
+							<div className="col-md-4 border text-end">DEXIA</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
 		</>
 
 	)
