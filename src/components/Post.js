@@ -18,12 +18,6 @@ export default function Post(props) {
   }
   pi.src = props.img;
 
-
-
-
-
-
-
   const handleTextVisibility = () => {
     setIsExpanded(!isExpanded);
   };
@@ -32,7 +26,7 @@ export default function Post(props) {
     setLike(!like);
   }
 
-  const postFullLength = () => {
+  const createFullLengthPost = () => {
     let t = [];
     (props.content.map((paragraph, index) => {
       t.push(<p key={index}>{paragraph}</p>);
@@ -40,7 +34,7 @@ export default function Post(props) {
     setContent(t);
   }
 
-  const postPartialLength = () => {
+  const createPartialLengthPost = () => {
     let countchars = 0;
     let t = [];
     props.content.map((paragraph, index) => {
@@ -64,7 +58,8 @@ export default function Post(props) {
 
   useEffect(() => {
 
-    postPartialLength();
+    handleResize();
+    createPartialLengthPost();
 
     let postTotalCharacters = 0;
     props.content.map(p => {
@@ -81,9 +76,9 @@ export default function Post(props) {
   useEffect(() => {
     if (!firstRender) {
       if (isExpanded) {
-        postFullLength();
+        createFullLengthPost();
       } else {
-        postPartialLength();
+        createPartialLengthPost();
       }
     }
   }, [isExpanded])
