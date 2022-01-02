@@ -35,7 +35,9 @@ export default function Feed(props) {
 		})
 	}, [])
 
-	
+
+
+
 
 
 	return (
@@ -50,19 +52,23 @@ export default function Feed(props) {
 					</div>
 
 
-						<div className="col-md-9 px-0 ">
-							<div className="component-bg">
-								<Header />
-							</div>
+					<div className="col-md-9 px-0 ">
+						<div className="component-bg">
+							<Header />
+						</div>
 
 
 						<div className="row">
 							<div className="col-md-8 ">
-								<CreatePost />
-								{posts.map((post) => {
-									return ( <div><Post key={post.id} {...post} /></div>)
-								})}
+								<div>
+									<CreatePost />
+								</div>
+								<div>
+									{posts.map((post) => {
 
+										return (<Post key={post.id} {...post} />)
+									})}
+								</div>
 							</div>
 							<div className="col-md-4 border text-end">DEXIA</div>
 						</div>

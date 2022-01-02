@@ -6,43 +6,94 @@ export default function Post(props) {
   const [like, setLike] = useState(false);
   const [likes, setLikes] = useState(props.likes);
   const [firstRender, setFirstRender] = useState(true);
-  const [expanded, setExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [content, setContent] = useState('');
+  const [height, setHeight] = useState();
+  const [width, setWidth] = useState();
+  const [ratio, setRatio] = useState();
+  let pi = new Image().onload = () => {
+    setHeight(pi.height);
+    setWidth(pi.width);
+    setRatio((pi.width / pi.height));
+  }
+  pi.src = props.img;
+
+
+
+
+
+
+
+  const handleTextVisibility = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   const handleLikeClick = () => {
     setLike(!like);
   }
 
+  const postFullLength = () => {
+    let t = [];
+    (props.content.map((paragraph, index) => {
+      t.push(<p key={index}>{paragraph}</p>);
+    }));
+    setContent(t);
+  }
+
+  const postPartialLength = () => {
+    let countchars = 0;
+    let t = [];
+    props.content.map((paragraph, index) => {
+      if (countchars <= 279) {
+        if (countchars + paragraph.length <= 280) {
+          t.push(<p key={index}>{paragraph}</p>);
+          countchars += paragraph.length;
+        } else {
+          let breakpoint = paragraph.indexOf(' ', (280 - countchars));
+          let partialText = paragraph.substring(0, breakpoint);
+          if (partialText.length > 0) {
+            countchars += partialText.length;
+            partialText = partialText + '...';
+          }
+          t.push(<p key={index}>{partialText}</p>)
+        }
+      }
+      setContent(t);
+    })
+  }
+
   useEffect(() => {
-    handleResize();
 
-    let content = document.getElementById('content');
-    let totalChars = content.innerText.length;
+    postPartialLength();
 
-    if (totalChars <= 280) {
+    let postTotalCharacters = 0;
+    props.content.map(p => {
+      postTotalCharacters += p.length;
+    })
+    if (postTotalCharacters <= 280) {
       document.getElementById('expander').style.visibility = 'hidden';
     }
 
-    if (totalChars > 280) {
-      let breakpoint = content.innerText.indexOf(' ', 280);
-      let contentText = content.innerText.substring(0, breakpoint) + '...';
-      content.innerText = contentText;
-    }
-
-    // let contentText = document.getElementById('content').innerText;
-
     setFirstRender(false);
-  }, []);
+  }, [])
+
+
+  useEffect(() => {
+    if (!firstRender) {
+      if (isExpanded) {
+        postFullLength();
+      } else {
+        postPartialLength();
+      }
+    }
+  }, [isExpanded])
 
   useEffect(() => {
     console.log(like);
     if (!firstRender) {
       if (like) {
-        document.getElementById('like').classList.add('btn-primary');
-        document.getElementById('like').classList.remove('btn-outline');
         setLikes(likes + 1);
       } else {
-        document.getElementById('like').classList.remove('btn-primary');
-        document.getElementById('like').classList.add('btn-outline');
         setLikes(likes - 1);
       }
     }
@@ -52,46 +103,20 @@ export default function Post(props) {
   const handleResize = () => {
     let image = document.getElementById('postImg');
     let parent = image.parentNode;
-    let imageRatio = image.naturalWidth / image.naturalHeight;
+    // let imageRatio = image.naturalWidth / image.naturalHeight;
 
-    if (image.width !== parent.offsetWidth) {
-      image.width = parent.offsetWidth;
-      image.height = (parent.offsetWidth / imageRatio);
+    if (width !== parent.offsetWidth) {
+      setWidth(parent.offsetWidth);
+      setHeight(parent.offsetWidth / ratio);
     }
-  }
-
-  const handleTextVisibility = () => {
-    let content = document.getElementById('content');
-    console.log('expanded: ' + expanded)
-    if (!expanded) {
-      content.innerHTML = '';
-
-      (props.content.map((paragraph, index) => {
-        let newParagraph = document.createElement('p');
-        // newParagraph.setAttribute('key', index);
-        newParagraph.appendChild(document.createTextNode(paragraph));
-        content.appendChild(newParagraph);
-      }))
-    } else {
-      let breakpoint = content.innerText.indexOf(' ', 280);
-      let contentText = content.innerText.substring(0, breakpoint) + '...';
-      content.innerText = contentText;
-    }
-    setExpanded(!expanded);
   }
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    }
   });
-
-
 
   return (
     <>
-
       <div className=" panel panel-default component-bg p-3 border">
         <div className="panel-body row ">
           <div className="col-1">
@@ -104,10 +129,10 @@ export default function Post(props) {
         </div>
 
         <div className="panel-body">
-          <div id="content" className="inline">{props.content.map((paragraph, index) => { return (<p key={index}>{paragraph}</p>) })}
+          <div id="content" className="inline">{content}
           </div>
-          <span onClick={handleTextVisibility} id="expander" type="button" className="btn btn-link pt-0">{expanded ? 'Show less' : 'Show more'}</span>
-          <img id='postImg' src={props.img} />
+          <span onClick={handleTextVisibility} id="expander" type="button" className="btn btn-link pt-0">{isExpanded ? 'Show less' : 'Show more'}</span>
+          <img id='postImg' src={props.img} width={width} height={height}/>
         </div>
 
         <div className="panel-body">
@@ -125,7 +150,7 @@ export default function Post(props) {
         <hr className="mx-1" />
 
         <div className="panel-footer">
-          <button onClick={handleLikeClick} id='like' className="btn btn-default col-sm-4 btn-outline mb-3">Like</button>
+          <button onClick={handleLikeClick} id='like' className={`btn btn-default col-sm-4 mb-3 ${like ? 'btn-primary' : 'btn-outline'}`}>Like</button>
           <button id='comment' className="pull-right col-sm-4 btn btn-outline mb-3">Comment</button>
           <button id='share' className="pull-right col-sm-4 btn btn-outline mb-3">Share</button>
         </div>
