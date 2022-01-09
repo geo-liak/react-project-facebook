@@ -1,13 +1,23 @@
 import "./css/App.css";
 import { BrowserRouter } from "react-router-dom";
-import { routes } from "./settings/Routes";
-import { StrictMode } from "react";
+import RouteDefinitions from "./settings/Routes";
+import React, { StrictMode, useState } from "react";
+import LoginInfo from "./LoginInfoContext";
+
 
 function App() {
+
+	const [isLoggedIn, setIsLoggedIn] = useState((localStorage.getItem('loggedIn').toLowerCase().trim() === 'true'));
+
+
 	return (
 		<div>
 			<StrictMode>
-				<BrowserRouter>{routes}</BrowserRouter>;
+				<LoginInfo.Provider value={[isLoggedIn, setIsLoggedIn]} >
+					<BrowserRouter>
+						<RouteDefinitions />
+					</BrowserRouter>
+				</LoginInfo.Provider>
 			</StrictMode>
 		</div>
 	)

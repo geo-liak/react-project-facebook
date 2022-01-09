@@ -84,7 +84,6 @@ export default function Post(props) {
   }, [isExpanded])
 
   useEffect(() => {
-    console.log(like);
     if (!firstRender) {
       if (like) {
         setLikes(likes + 1);
@@ -151,7 +150,7 @@ export default function Post(props) {
         </div>
       </div>
 
-      <div className="my-5"></div>
+      <div className="my-2"></div>
     </>
   )
 }

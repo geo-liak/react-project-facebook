@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
@@ -7,26 +7,10 @@ import Post from "../components/Post";
 import ProfileBrief from "../components/ProfileBrief";
 import ProfileEdit from "../components/ProfileEdit";
 import ProfileSections from "../components/ProfileSections";
+import LoginInfo from "../LoginInfoContext";
 import { url } from '../settings/settings'
 
 export default function Feed(props) {
-	const [loggedIn, setLoggedIn] = useState(false);
-	useEffect(() => {
-		if (typeof props.login === "undefined") {
-			setLoggedIn(false);
-		} else {
-			setLoggedIn(true);
-		}
-	}, []);
-
-	const handleClick = () => {
-		setLoggedIn(!loggedIn);
-	};
-
-	useEffect(() => {
-		// console.log('logged in ' + loggedIn);
-	}, [loggedIn]);
-
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
@@ -34,10 +18,6 @@ export default function Feed(props) {
 			setPosts(res.data);
 		})
 	}, [])
-
-
-
-
 
 
 	return (
