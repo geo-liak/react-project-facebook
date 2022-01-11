@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import '../css/App.css';
 
 export default function Post(props) {
@@ -11,6 +12,8 @@ export default function Post(props) {
   const [height, setHeight] = useState();
   const [width, setWidth] = useState();
   const [ratio, setRatio] = useState();
+  const [expanderVisible, setExpanderVisible] = useState(true);
+
   let pi = new Image().onload = () => {
     setHeight(pi.height);
     setWidth(pi.width);
@@ -36,11 +39,11 @@ export default function Post(props) {
 
   const createPartialLengthPost = () => {
     let countchars = 0;
-    let t = [];
+    let contentParagraphs = [];
     props.content.map((paragraph, index) => {
       if (countchars <= 279) {
         if (countchars + paragraph.length <= 280) {
-          t.push(<p key={index}>{paragraph}</p>);
+          contentParagraphs.push(<p key={index}>{paragraph}</p>);
           countchars += paragraph.length;
         } else {
           let breakpoint = paragraph.indexOf(' ', (280 - countchars));
@@ -49,10 +52,10 @@ export default function Post(props) {
             countchars += partialText.length;
             partialText = partialText + '...';
           }
-          t.push(<p key={index}>{partialText}</p>)
+          contentParagraphs.push(<p key={index}>{partialText}</p>)
         }
       }
-      setContent(t);
+      setContent(contentParagraphs);
     })
   }
 
@@ -62,16 +65,19 @@ export default function Post(props) {
     createPartialLengthPost();
 
     let postTotalCharacters = 0;
-    props.content.map(p => {
-      postTotalCharacters += p.length;
+    props.content.map(paragraph => {
+      postTotalCharacters += paragraph.length;
     })
+
     if (postTotalCharacters <= 280) {
-      document.getElementById('expander').style.visibility = 'hidden';
+      setExpanderVisible(false);
+      // document.getElementById('expander').style.display = 'none';
     }
-
+    
     setFirstRender(false);
-  }, [])
-
+  }, []);
+  
+  
 
   useEffect(() => {
     if (!firstRender) {
@@ -81,7 +87,7 @@ export default function Post(props) {
         createPartialLengthPost();
       }
     }
-  }, [isExpanded])
+  }, [isExpanded]);
 
   useEffect(() => {
     if (!firstRender) {
@@ -97,7 +103,6 @@ export default function Post(props) {
   const handleResize = () => {
     let image = document.getElementById('postImg');
     let parent = image.parentNode;
-    // let imageRatio = image.naturalWidth / image.naturalHeight;
 
     if (width !== parent.offsetWidth) {
       setWidth(parent.offsetWidth);
@@ -124,9 +129,9 @@ export default function Post(props) {
 
         <div className="panel-body">
           <div id="content" className="inline">{content}
+            <span onClick={handleTextVisibility} id="expander" type="button" className="btn btn-link pt-0" style={{"visibility": `${expanderVisible ? 'visible' : 'hidden'}`}}>{isExpanded ? 'Show less' : 'Show more'}</span>
           </div>
-          <span onClick={handleTextVisibility} id="expander" type="button" className="btn btn-link pt-0">{isExpanded ? 'Show less' : 'Show more'}</span>
-          <img id='postImg' src={props.img} width={width} height={height}/>
+          <img id='postImg' src={props.img} width={width} height={height} alt='' />
         </div>
 
         <div className="panel-body">

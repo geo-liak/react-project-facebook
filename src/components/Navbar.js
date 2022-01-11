@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/App.css';
 import LoginInfo from '../LoginInfoContext';
@@ -23,7 +23,7 @@ export default function Navbar() {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <a className="navbar-brand" href="index.html">Facebook</a>
+                    <a className="navbar-brand" href="/login">Facebook</a>
                 </div>
                 <div>
                     <button className='btn navbar-item'>Home</button>

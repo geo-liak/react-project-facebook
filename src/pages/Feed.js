@@ -1,24 +1,23 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import ProfileBrief from "../components/ProfileBrief";
-import ProfileEdit from "../components/ProfileEdit";
 import ProfileSections from "../components/ProfileSections";
-import LoginInfo from "../LoginInfoContext";
-import { url } from '../settings/settings'
+import { url } from '../settings/settings';
 
 export default function Feed(props) {
 	const [posts, setPosts] = useState([]);
+	// const [lastUsedId, setLastUsedId] = useState(0);
 
 	useEffect(() => {
-		axios.get(url + "/posts/").then((res) => {
+		let data = axios.get(url + "/posts/")
+		.then((res) => {
 			setPosts(res.data);
 		})
 	}, [])
-
 
 	return (
 		<>
