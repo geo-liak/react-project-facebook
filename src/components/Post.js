@@ -1,6 +1,9 @@
+import { logDOM } from "@testing-library/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../css/App.css';
+import logo from '../data/img/logo.jpg';
+
 
 export default function Post(props) {
 
@@ -119,11 +122,11 @@ export default function Post(props) {
       <div className=" panel panel-default component-bg p-3 border">
         <div className="panel-body row ">
           <div className="col-1">
-            <img src={props.img} width='50' height='50' />
+            <img src={logo} width='50' height='50' />
           </div>
           <div className="col-11">
             <p className="mx-3 h6"><a>PeopleCert</a></p>
-            <p className="mx-3 h6">{props.date}</p>
+            <p className="mx-3 h6 fontsize-small">{props.date}</p>
           </div>
         </div>
 

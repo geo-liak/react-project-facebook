@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import ProfileBrief from "../components/ProfileBrief";
 import ProfileSections from "../components/ProfileSections";
+import Studies from "../components/Studies";
 import { url } from '../settings/settings';
 
 export default function Feed(props) {
@@ -14,9 +15,9 @@ export default function Feed(props) {
 
 	useEffect(() => {
 		let data = axios.get(url + "/posts/")
-		.then((res) => {
-			setPosts(res.data);
-		})
+			.then((res) => {
+				setPosts(res.data);
+			})
 	}, [])
 
 	return (
@@ -49,7 +50,9 @@ export default function Feed(props) {
 									})}
 								</div>
 							</div>
-							<div className="col-md-4 border text-end">DEXIA</div>
+							<div className="col-md-4 ps-0">
+								<Studies />
+							</div>
 						</div>
 					</div>
 				</div>

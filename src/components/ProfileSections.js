@@ -14,7 +14,7 @@ export default function ProfileSections() {
             <button onClick={handleClick} className="btn btn-outline w-100 text-start">Photos</button>
             <button onClick={handleClick} className="btn btn-outline w-100 text-start">About</button>
             <button onClick={handleClick} className="btn btn-outline w-100 text-start">Community</button>
-            <button onClick={handleClick} className="btn btn-success text-start mt-4">Create Page</button>
+            <button onClick={handleClick} className="btn btn-success btn-green text-start mt-4">Create Page</button>
         </div>
     )
 }

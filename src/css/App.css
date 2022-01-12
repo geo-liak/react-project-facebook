@@ -89,8 +89,11 @@ a {
 }
 
 .registration-successful, .msgSuccess {
-  color: rgb(45, 175, 6);
   font-weight: 600;
+}
+
+.btn-green {
+  background-color: rgb(45, 175, 6) !important;
 }
 
 .msgFail {
@@ -129,4 +132,13 @@ a {
   border-radius: 50%;
   border-color: #fff !important;
   border-width: 3px !important;
+}
+
+.fontsize-small {
+  font-size: calc(0.65rem + .3vw) !important;
+}
+
+.fontsize-small-title {
+  font-size: calc(0.9rem + .3vw);
+  font-weight: 400;
 }
