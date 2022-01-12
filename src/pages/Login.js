@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../css/App.css";
 import LoginInfo from "../LoginInfoContext";
 import { url } from "../settings/settings";
-import Message from "./Message";
+import Message from "../components/Message";
 
 export default function Login(props) {
 	const location = useLocation();

@@ -89,6 +89,7 @@ a {
 }
 
 .registration-successful, .msgSuccess {
+  color: rgb(45, 175, 6) !important;
   font-weight: 600;
 }
 
