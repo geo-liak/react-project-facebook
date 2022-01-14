@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import LoginInfo from "../LoginInfoContext";
+import { LoginInfo } from "../LoginInfoContext";
 import Feed from "../pages/Feed"
 
 

@@ -1,6 +1,4 @@
-import { logDOM } from "@testing-library/react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import '../css/App.css';
 import logo from '../data/img/logo.jpg';
 
@@ -74,7 +72,6 @@ export default function Post(props) {
 
     if (postTotalCharacters <= 280) {
       setExpanderVisible(false);
-      // document.getElementById('expander').style.display = 'none';
     }
     
     setFirstRender(false);

@@ -1,5 +1,5 @@
 import React from 'react';
 
-const LoginInfo = React.createContext();
+export const LoginInfo = React.createContext();
 
-export default LoginInfo;
+export const UserInfo = React.createContext();

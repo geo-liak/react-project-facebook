@@ -22,8 +22,6 @@ export default function Header() {
 
     useEffect(() => {
         handleResize();
-        // window.addEventListener('resize', handleResize);
-
     }, [])
 
     return (

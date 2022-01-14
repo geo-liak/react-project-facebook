@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/App.css";
-import LoginInfo from "../LoginInfoContext";
+import { LoginInfo, UserInfo } from "../LoginInfoContext";
 import { url } from "../settings/settings";
 import Message from "../components/Message";
 
@@ -15,6 +15,7 @@ export default function Login(props) {
 	const [newRegistration, setNewRegistration] = useState(false);
 	const [informationMessage, setInformationMessage] = useState("");
 	const [isLoggedIn, setIsLoggedIn] = useContext(LoginInfo);
+	const [loggedInUser, setLoggedInUser] = useContext(UserInfo);
 
 	useEffect(() => {
 		(location.state && location.state.newRegistration) !== null
@@ -58,22 +59,24 @@ export default function Login(props) {
 		let userToLogin = null;
 
 		users.filter((user) => {
-			if (user.username === inputUsername && user.password === inputPassword) {
+			if (user.username.toLowerCase() === inputUsername.toLowerCase() && user.password === inputPassword) {
 				userToLogin = user;
 				localStorage.setItem('loggedIn', true);
 				setIsLoggedIn(true);
 				setFailedLogin(false);
+				setLoggedInUser(user);
 			}
 		});
 
 		if (userToLogin === null && users.length > 0) {
 			setFailedLogin(true);
 			setIsLoggedIn(false);
+			setLoggedInUser(null);
 		}
 
 	}, [users]);
 
-		useEffect(() => {
+	useEffect(() => {
 		if (isLoggedIn) {
 			navigate('/feed');
 		}
@@ -81,51 +84,48 @@ export default function Login(props) {
 
 	return (
 		<>
-			<LoginInfo.Provider value={isLoggedIn}>
-				{/* <!-- login form --> */}
-				<form
-					className='login-form-width border shadow center-xy p-3'
-					onSubmit={(e) => handleLogin(e)}>
-					{informationMessage}
-					<h4 className='text-center'>Login to start enjoying unlimited fun!</h4>
-					<div className='form-group'>
-						<input
-							id='username'
-							className='form-control btn-lg my-3'
-							type='text'
-							name='username'
-							placeholder='Username'
-						/>
-						<input
-							id='password'
-							className='form-control btn-lg my-3'
-							type='password'
-							name='password'
-							placeholder='Password'
-						/>
-						<input
-							className='btn btn-primary btn-block btn-lg btn-width-100 py-2'
-							type='submit'
-							name='login'
-							value='Login'
-						/>
-						<p className='text-line py-1'>
-							<span>or</span>
-						</p>
-						<div className='d-flex justify-content-center'>
-							<Button
-								onClick={handleRegisterClick}
-								className='btn-register btn-lg mb-2'>
-								Register
-							</Button>
+					<form
+						className='login-form-width border shadow center-xy p-3'
+						onSubmit={(e) => handleLogin(e)}>
+						{informationMessage}
+						<h4 className='text-center'>Login to start enjoying unlimited fun!</h4>
+						<div className='form-group'>
+							<input
+								id='username'
+								className='form-control btn-lg my-3'
+								type='text'
+								name='username'
+								placeholder='Username'
+							/>
+							<input
+								id='password'
+								className='form-control btn-lg my-3'
+								type='password'
+								name='password'
+								placeholder='Password'
+							/>
+							<input
+								className='btn btn-primary btn-block btn-lg btn-width-100 py-2'
+								type='submit'
+								name='login'
+								value='Login'
+							/>
+							<p className='text-line py-1'>
+								<span>or</span>
+							</p>
+							<div className='d-flex justify-content-center'>
+								<Button
+									onClick={handleRegisterClick}
+									className='btn-register btn-lg mb-2'>
+									Register
+								</Button>
+							</div>
 						</div>
-					</div>
 
-					<div className='form-group'></div>
+						<div className='form-group'></div>
 
-					<div className='form-group'></div>
-				</form>
-			</LoginInfo.Provider>
+						<div className='form-group'></div>
+					</form>
 		</>
 	);
 }
