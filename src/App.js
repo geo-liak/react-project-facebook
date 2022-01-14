@@ -7,7 +7,7 @@ import { LoginInfo, UserInfo } from "./LoginInfoContext";
 
 function App() {
 
-	const [isLoggedIn, setIsLoggedIn] = useState((localStorage.getItem('loggedIn').toLowerCase().trim() === 'true'));
+	const [isLoggedIn, setIsLoggedIn] = useState((localStorage.getItem('loggedIn') === null ? false : (localStorage.getItem('loggedIn').toLowerCase().trim() === 'true')));
 	const [loggedInUser, setLoggedInUser] = useState(null);
 
 
