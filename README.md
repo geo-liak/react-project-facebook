@@ -29,3 +29,7 @@ npm install -g json-server
 
 5. From a separate terminal window, go to the project folder (step 2) and run:  
 ```npm start```
+
+# JSON-server port
+
+The json-server port is set to 3004. If you need to change to another port, change the file ```settings.js``` and use the new port when starting the json-server in step 4.
