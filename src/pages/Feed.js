@@ -11,7 +11,6 @@ import { url } from '../settings/settings';
 
 export default function Feed(props) {
 	const [posts, setPosts] = useState([]);
-	// const [lastUsedId, setLastUsedId] = useState(0);
 
 	useEffect(() => {
 		let data = axios.get(url + "/posts/")
@@ -61,17 +60,4 @@ export default function Feed(props) {
 		</>
 
 	)
-	// (
-	// 	<div>
-	// 		This is the feed page. You are currentry{" "}
-	// 		{loggedIn ? "logged in" : "logged out"}.
-	// 		<br />
-	// 		{loggedIn ? (
-	// 			<button onClick={handleClick}>{"Log out"}</button>
-	// 		) : (
-	// 			<button onClick={handleClick}>{"Log in"}</button>
-	// 		)}
-	// 		<Post />
-	// 	</div>
-	// );
 }

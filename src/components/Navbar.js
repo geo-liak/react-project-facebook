@@ -35,7 +35,7 @@ export default function Navbar() {
                     <a className="navbar-brand" href="/login">Facebook</a>
                 </div>
                 <div>
-                    <span className='btn navbar-item'>{loggedInUser.username.replace(loggedInUser.username.substring(0, 1), loggedInUser.username.charAt(0).toUpperCase())}</span>
+                    {loggedInUser !== null ? <span className='btn navbar-item'>{loggedInUser.username.replace(loggedInUser.username.substring(0, 1), loggedInUser.username.charAt(0).toUpperCase())}</span> : ''}
                     <button onClick={handleClick} className='btn navbar-item'>Home</button>
                     <button onClick={showProfile} className='btn navbar-item'>Profile</button>
                     <button onClick={logOut} className='btn navbar-item'>Logout</button>

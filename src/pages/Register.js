@@ -50,10 +50,6 @@ export default function Register() {
 		}
 	};
 
-	// const handleRegister = (e) => {
-	// 	e.preventDefault();
-	// };
-
 	return (
 		<>
 			<form

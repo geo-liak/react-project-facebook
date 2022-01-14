@@ -15,12 +15,17 @@ export default function Post(props) {
   const [ratio, setRatio] = useState();
   const [expanderVisible, setExpanderVisible] = useState(true);
 
-  let pi = new Image().onload = () => {
-    setHeight(pi.height);
-    setWidth(pi.width);
-    setRatio((pi.width / pi.height));
+  let picture = new Image().onload = () => {
+    setHeight(picture.height);
+    setWidth(picture.width);
+    setRatio((picture.width / picture.height));
   }
-  pi.src = props.img;
+
+  picture.src = props.img;
+
+  const handleClick = (e) => {
+    console.log('Button \'' + e.target.innerText + '\' was clicked.');
+}
 
   const handleTextVisibility = () => {
     setIsExpanded(!isExpanded);
@@ -73,11 +78,11 @@ export default function Post(props) {
     if (postTotalCharacters <= 280) {
       setExpanderVisible(false);
     }
-    
+
     setFirstRender(false);
   }, []);
-  
-  
+
+
 
   useEffect(() => {
     if (!firstRender) {
@@ -129,7 +134,7 @@ export default function Post(props) {
 
         <div className="panel-body">
           <div id="content" className="inline">{content}
-            <span onClick={handleTextVisibility} id="expander" type="button" className="btn btn-link pt-0" style={{"visibility": `${expanderVisible ? 'visible' : 'hidden'}`}}>{isExpanded ? 'Show less' : 'Show more'}</span>
+            <span onClick={handleTextVisibility} id="expander" type="button" className="btn btn-link pt-0" style={{ "visibility": `${expanderVisible ? 'visible' : 'hidden'}` }}>{isExpanded ? 'Show less' : 'Show more'}</span>
           </div>
           <img id='postImg' src={props.img} width={width} height={height} alt='' />
         </div>
@@ -150,8 +155,8 @@ export default function Post(props) {
 
         <div className="panel-footer">
           <button onClick={handleLikeClick} id='like' className={`btn btn-default col-sm-4 mb-3 ${like ? 'btn-primary' : 'btn-outline'}`}>Like</button>
-          <button id='comment' className="pull-right col-sm-4 btn btn-outline mb-3">Comment</button>
-          <button id='share' className="pull-right col-sm-4 btn btn-outline mb-3">Share</button>
+          <button onClick={handleClick} id='comment' className="pull-right col-sm-4 btn btn-outline mb-3">Comment</button>
+          <button onClick={handleClick} id='share' className="pull-right col-sm-4 btn btn-outline mb-3">Share</button>
         </div>
       </div>
 
