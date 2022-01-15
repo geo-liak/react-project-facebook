@@ -33,3 +33,7 @@ npm install -g json-server
 # JSON-server port
 
 The json-server port is set to 3004. If you need to change to another port, change the file ```settings.js``` and use the new port when starting the json-server in step 4.
+
+# Credentials
+
+In order to login, you can use "user01" as username and "pass01" as password. Alternatively, you can create you own user. Irrespectively of the credentials that will be used, the same feed will be presented.   

@@ -43,7 +43,7 @@ export default function Feed(props) {
 									<CreatePost />
 								</div>
 								<div>
-									{posts.map((post) => {
+									{posts.slice().reverse().map((post) => {
 
 										return (<Post key={post.id} {...post} />)
 									})}

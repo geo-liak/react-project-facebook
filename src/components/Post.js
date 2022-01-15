@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import '../css/App.css';
 import logo from '../data/img/logo.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp,faShareAltSquare,faShareAlt,faShare } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Post(props) {
@@ -25,7 +27,7 @@ export default function Post(props) {
 
   const handleClick = (e) => {
     console.log('Button \'' + e.target.innerText + '\' was clicked.');
-}
+  }
 
   const handleTextVisibility = () => {
     setIsExpanded(!isExpanded);
@@ -154,9 +156,9 @@ export default function Post(props) {
         <hr className="mx-1" />
 
         <div className="panel-footer">
-          <button onClick={handleLikeClick} id='like' className={`btn btn-default col-sm-4 mb-3 ${like ? 'btn-primary' : 'btn-outline'}`}>Like</button>
+          <button onClick={handleLikeClick} id='like' className={`btn btn-default col-sm-4 mb-3 ${like ? 'btn-primary' : 'btn-outline'}`}><FontAwesomeIcon icon={faThumbsUp} /> Like</button>
           <button onClick={handleClick} id='comment' className="pull-right col-sm-4 btn btn-outline mb-3">Comment</button>
-          <button onClick={handleClick} id='share' className="pull-right col-sm-4 btn btn-outline mb-3">Share</button>
+          <button onClick={handleClick} id='share' className="pull-right col-sm-4 btn btn-outline mb-3"><FontAwesomeIcon icon={faShareAltSquare} /> Share</button>
         </div>
       </div>
 
