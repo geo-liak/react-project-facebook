@@ -156,7 +156,8 @@ export default function Post(props) {
         <hr className="mx-1" />
 
         <div className="panel-footer">
-          <button onClick={handleLikeClick} id='like' className={`btn btn-default col-sm-4 mb-3 ${like ? 'like-pressed' : 'btn-outline'}`}>
+          {/* The outline has been removed from the 'Like' button. It has been retained on the rest of the buttons since no other visible function has been implemented. When a button is clicked, it is logged in the console.*/}
+          <button onClick={handleLikeClick} id='like' className={`btn btn-default col-sm-4 mb-3 shadow-none ${like ? 'like-pressed' : 'btn-outline'}`}>
             <span style={{ paddingRight: '8px' }}>
               <FontAwesomeIcon icon={faThumbsUp} />
             </span>
