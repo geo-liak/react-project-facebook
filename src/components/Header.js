@@ -1,4 +1,4 @@
-import { faCommentAlt, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faCommentAlt, faEllipsisH, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import '../css/App.css';
@@ -41,7 +41,11 @@ export default function Header() {
                             <FontAwesomeIcon className="" icon={faShare} />
                         </span>
                         Share</button>
-                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>. . .</button>
+                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>
+                    <span>
+                            <FontAwesomeIcon className="" icon={faEllipsisH} />
+                        </span>
+                    </button>
                 </div>
 
                 <div className='d-flex justify-content-end col-8 px-4'>

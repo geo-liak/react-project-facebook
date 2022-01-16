@@ -1,7 +1,6 @@
 /* styles */
 #root {
   background-color: #eaebef;
-  /* background-color: rgb(247, 247, 247); */
 }
 
 a {
@@ -142,4 +141,8 @@ a {
 .fontsize-small-title {
   font-size: calc(0.9rem + .3vw);
   font-weight: 400;
+}
+
+.like-pressed {
+  color: blue;
 }
