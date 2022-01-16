@@ -1,3 +1,5 @@
+import { faCommentAlt, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import '../css/App.css';
 import imgHeader from '../data/img/header.png';
@@ -29,14 +31,26 @@ export default function Header() {
             <img className='' id="imgHeader" src={imgHeader}></img>
             <div className='row'>
                 <div className='col-4 px-4'>
-                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>Like</button>
-                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>Share</button>
+                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>
+                        <span style={{ paddingRight: '8px' }}>
+                            <FontAwesomeIcon icon={faThumbsUp} />
+                        </span>
+                        Like</button>
+                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>
+                        <span style={{ paddingRight: '8px' }}>
+                            <FontAwesomeIcon className="" icon={faShare} />
+                        </span>
+                        Share</button>
                     <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>. . .</button>
                 </div>
 
                 <div className='d-flex justify-content-end col-8 px-4'>
                     <button onClick={handleClick} className='btn header-btn-blue mt-3 py-1 px-3 me-3'>Contact Us</button>
-                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>Send Message</button>
+                    <button onClick={handleClick} className='btn header-btn-light mt-3 py-1 px-3'>
+                        <span style={{ paddingRight: '8px' }}>
+                            <FontAwesomeIcon className="" icon={faCommentAlt} />
+                        </span>
+                        Send Message</button>
                 </div>
             </div>
         </div>
