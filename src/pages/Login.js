@@ -61,7 +61,8 @@ export default function Login(props) {
 		users.filter((user) => {
 			if (user.username.toLowerCase() === inputUsername.toLowerCase() && user.password === inputPassword) {
 				userToLogin = user;
-				localStorage.setItem('loggedIn', true);
+				sessionStorage.setItem('isLoggedIn', true);
+				sessionStorage.setItem('loggedInUser', JSON.stringify(user));
 				setIsLoggedIn(true);
 				setFailedLogin(false);
 				setLoggedInUser(user);

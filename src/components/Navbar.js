@@ -17,8 +17,9 @@ export default function Navbar() {
     }
 
     const logOut = () => {
+        sessionStorage.clear();
         setIsLoggedIn(false);
-        localStorage.setItem('loggedIn', false);
+        sessionStorage.setItem('isLoggedIn', false);
     }
 
     useEffect(() => {

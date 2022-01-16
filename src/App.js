@@ -7,8 +7,12 @@ import { LoginInfo, UserInfo } from "./LoginInfoContext";
 
 function App() {
 
-	const [isLoggedIn, setIsLoggedIn] = useState((localStorage.getItem('loggedIn') === null ? false : (localStorage.getItem('loggedIn').toLowerCase().trim() === 'true')));
-	const [loggedInUser, setLoggedInUser] = useState(null);
+	const [isLoggedIn, setIsLoggedIn] = useState((sessionStorage.getItem('isLoggedIn') === null ? false : (sessionStorage.getItem('isLoggedIn').toLowerCase().trim() === 'true')));
+
+	const [loggedInUser, setLoggedInUser] = useState(
+		(sessionStorage.getItem('loggedInUser') === null) 
+		? null 
+		: JSON.parse(sessionStorage.getItem('loggedInUser')));
 
 
 	return (
