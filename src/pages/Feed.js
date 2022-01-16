@@ -7,17 +7,27 @@ import Post from "../components/Post";
 import ProfileBrief from "../components/ProfileBrief";
 import ProfileSections from "../components/ProfileSections";
 import Studies from "../components/Studies";
+import { NewPost } from "../InfoContext";
 import { url } from '../settings/settings';
 
 export default function Feed(props) {
 	const [posts, setPosts] = useState([]);
+	const [newPost, setNewPost] = useState({});
 
-	useEffect(() => {
+	const getPosts = () => {
 		let data = axios.get(url + "/posts/")
 			.then((res) => {
 				setPosts(res.data);
 			})
+	}
+
+	useEffect(() => {
+		getPosts();
 	}, [])
+
+	useEffect(() => {
+		getPosts();
+	}, [newPost])
 
 	return (
 		<>
@@ -36,19 +46,21 @@ export default function Feed(props) {
 							<Header />
 						</div>
 
-
 						<div className="row">
-							<div className="col-md-8 ">
-								<div>
-									<CreatePost />
-								</div>
-								<div>
-									{posts.slice().reverse().map((post) => {
+							<NewPost.Provider value={[newPost, setNewPost]}>
+								<div className="col-md-8 ">
+									<div>
+										<CreatePost />
+									</div>
+									<div>
+										{posts.slice().reverse().map((post) => {
 
-										return (<Post key={post.id} {...post} />)
-									})}
+											return (<Post key={post.id} {...post} />)
+										})}
+									</div>
 								</div>
-							</div>
+							</NewPost.Provider>
+
 							<div className="col-md-4 ps-0">
 								<Studies />
 							</div>

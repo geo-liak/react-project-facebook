@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/App.css';
-import { LoginInfo, UserInfo } from '../LoginInfoContext';
+import { LoginInfo, UserInfo } from '../InfoContext';
 
 export default function Navbar() {
     const navigate = useNavigate();

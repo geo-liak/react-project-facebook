@@ -2,7 +2,7 @@ import "./css/App.css";
 import { BrowserRouter } from "react-router-dom";
 import RouteDefinitions from "./settings/Routes";
 import React, { StrictMode, useState } from "react";
-import { LoginInfo, UserInfo } from "./LoginInfoContext";
+import { LoginInfo, UserInfo } from "./InfoContext";
 
 
 function App() {

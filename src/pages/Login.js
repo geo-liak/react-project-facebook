@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/App.css";
-import { LoginInfo, UserInfo } from "../LoginInfoContext";
+import { LoginInfo, UserInfo } from "../InfoContext";
 import { url } from "../settings/settings";
 import Message from "../components/Message";
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import '../css/App.css';
 import logo from '../data/img/logo.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faShareAltSquare, faShareAlt, faShare, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faShare, faCommentDots } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Post(props) {
