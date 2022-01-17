@@ -25,16 +25,14 @@ export default function CreatePost(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const content = document.getElementById('content').value;
+        const content = document.getElementById('content').value.split(/\r?\n/g);
 
        
         const imageNumber = imageList[Math.floor(Math.random() * imageList.length)];
 
         const newPost = {
             "date": getCurrentDate(),
-            "content": [
-                content
-            ],
+            "content": content,
             "likes": 0,
             "shares": 0,
             "tags": [],
@@ -50,12 +48,11 @@ export default function CreatePost(props) {
             })
     }
 
-
     return (
         <div className="mb-3">
             <form action="" onSubmit={(e) => handleSubmit(e)}>
                 <div className="input-group">
-                    <input id="content" className="form-control" type="text" name="content" placeholder="Make a post..." />
+                    <textarea id="content" className="form-control" type="text" name="content" placeholder="Make a post..." />
                     <span className="input-group-btn">
                         <button className="btn btn-success btn-green" type="submit" name="post">Post</button>
                     </span>
